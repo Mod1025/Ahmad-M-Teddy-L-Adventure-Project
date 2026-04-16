@@ -1,0 +1,53 @@
+body {
+    padding: 0;
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url(Img/welcome-page-background.jpg);
+}
+
+/*Welcoming page*/
+header > h1 {
+    text-align: center;
+    margin: 5rem;
+    padding-top: 5%;
+    font-size: 64px;
+    color: white;
+}
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25rem;
+}
+
+h3, p{
+text-align: center;
+margin: 0 auto;
+font-size: 1.5rem;
+}
+h3 {
+    font-weight: bold;
+    color: white;
+}
+p {
+    font-weight: bold;
+}
+.Easy {
+    color: rgb(55, 255, 0);
+}
+.Medium {
+    color: #FFCC00;
+}
+.Hard {
+    color: #FF0000;
+}
+main > section > figure > a > img {
+    margin-top: 2.5rem;
+    
+}
+main > section > figure > a > img:hover {
+    transform: scale(1.2,1.2);
+}
+/* Story-Page */
