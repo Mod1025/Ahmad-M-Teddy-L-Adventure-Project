@@ -51,3 +51,8 @@ main > section > figure > a > img:hover {
     transform: scale(1.2,1.2);
 }
 /* Story-Page */
+.MediumBody {
+    background-image: url(Img/Home-background.png);
+    background-repeat: no-repeat;
+    min-width: fit-content;
+}
