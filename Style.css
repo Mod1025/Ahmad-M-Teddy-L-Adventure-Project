@@ -52,7 +52,18 @@ main > section > figure > a > img:hover {
 }
 /* Story-Page */
 .MediumBody {
-    background-image: url(Img/Home-background.png);
+    background-image: url(Img/Medium-start.png);
     background-repeat: no-repeat;
     min-width: fit-content;
 }
+.HardBody {
+    background-image: url(Img/Hard-start.png);
+    background-repeat: no-repeat;
+    min-width: fit-content;
+}
+.EasyBody {
+    background-image: url(Img/Easy-start.png);
+    background-repeat: no-repeat;
+    min-width: fit-content;
+}
+   
