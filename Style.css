@@ -52,7 +52,7 @@ main > section > figure > a > img:hover {
 }
 /* Story-Page */
 .MediumBody {
-    background-image: url(Img/Home-background.png);
+    background-image: url(Img/Medium-start.png);
     background-repeat: no-repeat;
     background-size: contain;
 }
