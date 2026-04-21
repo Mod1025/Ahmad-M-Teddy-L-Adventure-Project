@@ -70,6 +70,5 @@ main > section > figure > a > img:hover {
 #player {
     position: absolute;
     image-rendering: pixelated;
-    background-color: #FF0000;
-    padding: 20px;
+    bottom: 0.5vh;
 }

@@ -3,8 +3,12 @@ const charc = document.getElementById("player");
 /* Globle Varables*/ 
 let D = false;
 let A = false;
+let space = false;
 let speed = 5;
 let posX = 0;
+let posY = 0;
+let gravity = 0.8;
+let velocity = 5;
 
 // moving function //
 const e = (event) => {
@@ -13,7 +17,9 @@ const e = (event) => {
         A = true
     } else if (event.code === 'KeyD') {
         D = true
-    } 
+    } else if (event.code === 'Space') {
+        space = true
+    }
 }
 // Stop moving function // 
 const Stopmoving = () => {
@@ -23,10 +29,13 @@ const Stopmoving = () => {
 // Moving function //
 const moving = () => {
 
-    if (A === true) {
+    const Jump = posY = gravity += velocity;
+    if (A === true && posX > 0) {
         charc.style.left = (posX = posX - speed) + "px";
-    } else if (D === true) {
-        charc.style.left = (posx = posX + speed) + "px";
+        charc.style.transform = "scaleX(-1)";
+    } else if (D === true && posX < window.innerWidth - 220) {
+        charc.style.left = (posX = posX + speed) + "px";
+        charc.style.transform = "scaleX(1)";
     }
     requestAnimationFrame(moving);
 }
