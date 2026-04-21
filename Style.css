@@ -54,8 +54,19 @@ main > section > figure > a > img:hover {
 .MediumBody {
     background-image: url(Img/Medium-start.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    min-width: fit-content;
 }
+.HardBody {
+    background-image: url(Img/Hard-start.png);
+    background-repeat: no-repeat;
+    min-width: fit-content;
+}
+.EasyBody {
+    background-image: url(Img/Easy-start.png);
+    background-repeat: no-repeat;
+    min-width: fit-content;
+}
+  
 #player {
     position: absolute;
     image-rendering: pixelated;
