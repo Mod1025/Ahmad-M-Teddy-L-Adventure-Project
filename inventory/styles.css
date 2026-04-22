@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-  background: #ccc;
+
   box-sizing: border-box;
   width: 100%;
   height: 80vh;
@@ -19,6 +19,7 @@ body {
 }
 
 .inventory {
+  opacity:  70%;
   width: 335px;
   height: 200px;
   background: #c6c6c6;
@@ -46,7 +47,7 @@ h1 {
   right: -8px;
   cursor: default;
 }
-
+ /* design for the slots */
 .slot {
   width: 35px;
   height: 35px;
@@ -56,17 +57,17 @@ h1 {
   box-shadow: inset 1.5px 1.5px 0px rgba(55, 55, 55, 0.8),
     inset -2px -2px 0px #ffffff;
 }
-
+/* slot space */
 .slotSpace {
   margin: 10px 10px;
   display: flex;
   flex-wrap: wrap;
 }
-
+ /* makes the item in the box hidden so it looks like a click and drop */
 .invisible {
   visibility: hidden;
 }
-
+/* helps with making sure it can fit into a inventory slot. */
 .item {
   margin: 2px;
   display: flex;

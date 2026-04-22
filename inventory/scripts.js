@@ -52,22 +52,22 @@ function moveItem() {
   };
 
   ghostItem.oncontextmenu = function (event) {
-    event.preventDefault();
-    if (current_itemId && current_itemId != item.parentNode.id) {
+    event.preventDefault(); // prevents a item to be places in the orginal/default spot
+    if (current_itemId && current_itemId != item.parentNode.id) { 
       let area = document.getElementById(current_itemId);
       let free_space = !!!area.firstElementChild;
-      if (free_space) {
+      if (free_space) { //make a free space if the item held is use up in all spots
         let newItem = item.cloneNode(true);
-        newItem.addEventListener('click', moveItem);
-        newItem.addEventListener('contextmenu', moveItem);
-        newItem.setAttribute('draggable', false);
+        newItem.addEventListener('click', moveItem); // listens for moving items
+        newItem.addEventListener('contextmenu', moveItem); // allows the item to move
+        newItem.setAttribute('draggable', false); // turns off items that arn't true        
         if (parseInt(item.lastElementChild.innerHTML) == 1) {
           ghostItem.remove();
-          status_click = !status_click;
+          status_click = !status_click; //allows you to place and will subtract 1 from the amount of items help such as 64 and placing a single block makin it 63
           item.remove();
         } else {
           item.lastElementChild.innerHTML =
-            parseInt(item.lastElementChild.innerHTML) - 1;
+            parseInt(item.lastElementChild.innerHTML) - 1; //removes the ghost item and the "invisable" item.
           ghostItem.lastElementChild.innerHTML =
             parseInt(ghostItem.lastElementChild.innerHTML) - 1;
         }
@@ -125,7 +125,7 @@ function moveItem() {
     }
   }
 
-  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mousemove', onMouseMove); // for the ghost block to follow the cursor.
 }
 
 function enterDroppable(elem) {

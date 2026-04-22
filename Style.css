@@ -70,5 +70,6 @@ main > section > figure > a > img:hover {
 #player {
     position: absolute;
     image-rendering: pixelated;
+    transform: scaleX(-1);
     bottom: 0.5vh;
 }

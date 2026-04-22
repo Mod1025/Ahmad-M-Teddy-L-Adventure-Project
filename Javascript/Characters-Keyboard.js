@@ -13,14 +13,16 @@ let velocity = 5;
 // moving function //
 const e = (event) => {
 
-    if (event.code === 'KeyA') {
+    if (event.code === 'KeyA' || event.code === 'ArrowLeft') {
         A = true
-    } else if (event.code === 'KeyD') {
+    } else if (event.code === 'KeyD' || event.code === 'ArrowRight') {
         D = true
-    } else if (event.code === 'Space') {
+    } else if (event.code === 'Space' || event.code === 'ArrowUp') {
         space = true
     }
 }
+
+
 // Stop moving function // 
 const Stopmoving = () => {
     A = false
@@ -37,8 +39,11 @@ const moving = () => {
         charc.style.left = (posX = posX + speed) + "px";
         charc.style.transform = "scaleX(1)";
     }
+
     requestAnimationFrame(moving);
 }
+
+
 
 moving()
 
