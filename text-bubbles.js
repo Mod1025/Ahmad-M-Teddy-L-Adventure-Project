@@ -1,4 +1,5 @@
 const charc = document.getElementById("player");
+
 /* Globle Varables*/ 
 let D = false;
 let A = false;
@@ -26,10 +27,10 @@ const Stopmoving = () => {
 const moving = () => {
 
 
-    if (A === true && posX > 0) {
+    if (A === true && posX > 0 && isTalking === false) {
         charc.style.left = (posX = posX - speed) + "px";
         charc.style.transform = "scaleX(-1)";
-    } else if (D === true && posX < window.innerWidth - 245) {
+    } else if (D === true && posX < window.innerWidth - 245 && isTalking === false) {
         charc.style.left = (posX = posX + speed) + "px"; 
         charc.style.transform = "scaleX(1)";
     }
@@ -44,5 +45,8 @@ moving()
 window.addEventListener('keydown', e );
 window.addEventListener('keyup', Stopmoving);
 
+///////////////////////////////////////////////////////////////////////////////////
 
-
+let content = ["hi!, Nice day.", "bye!"];
+let count = 0;
+let isTalking = false;
