@@ -1,5 +1,4 @@
 const charc = document.getElementById("player");
-
 /* Globle Varables*/ 
 let D = false;
 let A = false;
@@ -35,7 +34,7 @@ const moving = () => {
     if (A === true && posX > 0) {
         charc.style.left = (posX = posX - speed) + "px";
         charc.style.transform = "scaleX(-1)";
-    } else if (D === true && posX < window.innerWidth - 220) {
+    } else if (D === true && posX < window.innerWidth - 245) {
         charc.style.left = (posX = posX + speed) + "px";
         charc.style.transform = "scaleX(1)";
     }

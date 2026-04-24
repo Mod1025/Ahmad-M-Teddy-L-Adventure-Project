@@ -115,10 +115,10 @@ function moveItem() {
     if (!elemBelow) return;
     let droppableBelow = elemBelow.closest('.slot');
     if (current_slot != droppableBelow) {
-      if (current_slot) {
-        leaveDroppable(current_slot);
+      if (current_slot) { //if open
+        leaveDroppable(current_slot); //
       }
-      current_slot = droppableBelow;
+      current_slot = droppableBelow; //add into a inventory slot
       if (current_slot) {
         enterDroppable(current_slot);
       }
