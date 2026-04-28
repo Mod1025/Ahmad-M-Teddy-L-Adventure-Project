@@ -68,8 +68,20 @@ main > section > figure > a > img:hover {
 }
   
 #player {
+    display: flex;
+    justify-content: center;
     position: absolute;
     image-rendering: pixelated;
     bottom: 0.5vh;
-    
+}
+#bubbles {
+    display: none;
+    position: absolute;
+    top: -100px;
+}
+
+#bubbles > p {
+    position: absolute;
+    top: 40px;
+    right: 15vh;
 }
