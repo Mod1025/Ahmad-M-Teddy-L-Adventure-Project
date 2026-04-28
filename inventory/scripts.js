@@ -143,3 +143,9 @@ function leaveDroppable(elem) {
   current_itemValue = null;
   free_space = false;
 }
+function character_overlay() {
+  var selector = document.getElementById('character-selected');
+  var newImage = selector.value;
+  document.getElementById('displayArea').src = newImage;
+}
+character_overlay();

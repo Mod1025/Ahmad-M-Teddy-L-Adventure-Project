@@ -162,11 +162,12 @@ a {
   align-items:flex-start;
 }
 .output {
-  width: 75px;
+  width: 85px;
   height: 70px;
   display: flex;
   justify-content: center;
   background: #8b8b8b;
   box-shadow: inset 1.5px 1.5px 0px rgba(55, 55, 55, 0.8),
     inset -2px -2px 0px #ffffff;
+    margin-right: 5px;
 }

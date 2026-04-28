@@ -37,12 +37,16 @@ const moving = () => {
     requestAnimationFrame(moving);
 }
 
+function nextScene{
+    if charc
+    
+
+}
+
 
 
 moving()
 
 window.addEventListener('keydown', e );
 window.addEventListener('keyup', Stopmoving);
-
-
-
+window.addEventListener('click', nextScene)
