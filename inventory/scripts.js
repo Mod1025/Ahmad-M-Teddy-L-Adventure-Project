@@ -3,6 +3,7 @@ let status_click = false; //current holding.
 let current_itemId = null; //which box I am going to drop it into.
 let current_itemType = null; //what type of item is already in that box.
 let current_itemValue = null; //How many items are in that box(value).
+const charc = document.getElementById("player");
 
 const items = document.querySelectorAll('.item'); //grabs every item in the screen with class ".item".
 
@@ -82,7 +83,7 @@ function moveItem() {
         }
         let destiny = parseInt(
           area.firstElementChild.lastElementChild.innerHTML
-        );
+        );const charc = document.getElementById("player");
         let origin = parseInt(item.lastElementChild.innerHTML);
         let ghost = parseInt(ghostItem.lastElementChild.innerHTML);
 
@@ -144,8 +145,14 @@ function leaveDroppable(elem) {
   free_space = false;
 }
 function character_overlay() {
+
   var selector = document.getElementById('character-selected');
+  
+  // 2. Get the value (the image URL) from that element
   var newImage = selector.value;
+  
+  // 3. Apply that URL to the 'src' of the display image
   document.getElementById('displayArea').src = newImage;
 }
-character_overlay();
+
+// character background

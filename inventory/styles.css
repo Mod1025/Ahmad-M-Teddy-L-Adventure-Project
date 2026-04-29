@@ -139,7 +139,7 @@ a {
   text-decoration: inherit;
 }
 .slotout {
-  width: 50px;
+  width: 70px;
   height: 35px;
   display: flex;
   justify-content: center;
@@ -160,6 +160,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items:flex-start;
+  
 }
 .output {
   width: 85px;
