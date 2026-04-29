@@ -68,9 +68,24 @@ const GateKeeper = () => {
 
     requestAnimationFrame(GateKeeper);
 }
+// let backgrounds = ['url('scene/goCollage.png')','url('scene/collage.png')','url('scene/gohmfromcg.png')','url('scene/.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
+//     'url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
+//     'url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
+//     'url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
+// ]
+function changeBackground() {
+    let background = document.querySelector('body');
+    background.addEventListener('click', function() {
+      // 3. The value must be a string: "url('path/to/image.png')"
+    document.body.style.backgroundImage = "url('scene/goCollage.png')";
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundAttachment = "fixed";
+    document.body.style.backgroundSize = "cover"; // Adds the full-screen fit
+    });
+  }
 
+changeBackground();
 GateKeeper()
 moving()
-
 window.addEventListener('keydown', e );
 window.addEventListener('keyup', Stopmoving);

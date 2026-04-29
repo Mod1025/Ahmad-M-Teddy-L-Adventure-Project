@@ -85,3 +85,7 @@ main > section > figure > a > img:hover {
     top: 40px;
     right: 15vh;
 }
+.Arrow{
+    display: flex;
+    justify-content: flex-end;
+}

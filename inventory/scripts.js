@@ -154,5 +154,11 @@ function character_overlay() {
   // 3. Apply that URL to the 'src' of the display image
   document.getElementById('displayArea').src = newImage;
 }
-
 // character background
+function changeBackground() {
+let background = document.getElementById('Background');
+background.addEventListener('click', function() {
+  document.body.style.backgroundImage = url('scene/goCollage.png');
+});
+}
+changeBackground();
