@@ -11,6 +11,7 @@ let content = ["hi!", "Nice day.", "bye!"];
 let count = 0;
 let isTalking = false;
 let hasTalked = false;
+let levelIndex = 0;
 
 // moving function //
 const e = (event) => {
@@ -57,7 +58,7 @@ const moving = () => {
 
 const GateKeeper = () => {
     
-    if (posX > 700 && isTalking === false && hasTalked === false) {
+    if (posX > currentLevel[levelIndex].triggerPoint && isTalking === false && hasTalked === false) {
         isTalking = true;
         A = false;
         D = false;
@@ -84,7 +85,30 @@ function changeBackground() {
     });
   }
 
+<<<<<<< Updated upstream
 changeBackground();
+=======
+/////
+ 
+let currentLevel = [
+    {triggerPoint: 400, dialague:[{name: "TV", text: "AI robots are taking over the world."}, {name: "Hero", text: "Its 7:55 I should head to collage."}], background: ('img/Medium-start.png')},
+
+    {triggerPoint: 500, dialague: [{name: "Teacher", text: "AI is taking over the world I cant help since im too old."}, {name: "Teacher", text: "I send you on a quest for extra credit! MC!!!"}, 
+    {name: "Hero", text:"Extra credit, ill do anything for extra credit!"}, {name: "Teacher", text: "Go home wise student and gather your items to conquer AI!"}], background: ('scene/collage.png')},
+
+    {triggerPoint: 600, dialague:[{name: "TV", text: "Air Line (67 + 67)/67 to AI military base."}], background: ('img/Medium-start.png')},
+
+    {triggerPoint: 700, dialague:[{name: "soldier", text: "Follow me to base, theirs incoming fire."}], background: ('scene/landPlane.png')},
+
+    {triggerPoint: 800, dialague:[{name: "soldier", text: "We need the secrete weapon."}, {name: "Hero", text: "No it’s too dangerous."}, 
+    {name: "soldier", text: "The ENERGY SWORD"}, {name: "Hero", text: "Sure."},
+    {name: "soldier", text: "It was separated to two warehouses."},{name: "Hero", text: "Will I get more extra credit?"}], background: ('scene/2ndmili.png')},
+
+    {triggerPoint: 900, dialague:[{name: "soldier", text: "Goodbye, Thank you."}], background: ('scene/Plane-wrong.png')}
+
+]
+
+>>>>>>> Stashed changes
 GateKeeper()
 moving()
 window.addEventListener('keydown', e );
