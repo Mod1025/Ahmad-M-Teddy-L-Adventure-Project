@@ -37,7 +37,7 @@ const cleanup = () => {
     A = false;
     D = false;
     levelIndex = levelIndex + 1;
-    posX = 0;
+
     hasTalked = false; 
 }
 // Stop moving function // 
@@ -88,24 +88,53 @@ let currentLevel = [
     {triggerPoint: 900, dialague:[{name: "soldier", text: "Goodbye, Thank you."}], background: ('scene/Plane-wrong.png')}
 
 ]
+    const images = [
+        "scene/1.png",
+        "scene/2.png",
+        "scene/3.png",
+        "Img/Medium-start.png",
+        "scene/5.png", 
+        "scene/6.png",
+        "scene/7.png",
+        "scene/8.png",
+        "scene/9.png",
+        "scene/10.png",
+        "scene/11.png",
+        "scene/12.png",
+        "scene/13.png",
+        "scene/14.png",
+        "scene/15.png",
+        "scene/16.png",
+        "scene/17.png",
+        "scene/18.png",
+        "scene/19.png",
+        "scene/20.png",
+        "scene/21.png",
+        "scene/22.png"
+      ];
 
-/*let backgrounds = ['url('scene/goCollage.png')','url('scene/collage.png')',{'url('scene/gohmfromcg.png')'},'url('scene/.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
-  'url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
-     'url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
-]*/
+
+      let currentIndex = 0;
+
+
 function changeBackground() {
     let background = document.querySelector('body');
     background.addEventListener('click', function() {
+        
+        let path = images[currentIndex];
       // 3. The value must be a string: "url('path/to/image.png')"
-    document.body.style.backgroundImage = "url('scene/goCollage.png')",
+    document.body.style.backgroundImage = "url('" + path + "')";
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundAttachment = "fixed";
     document.body.style.backgroundSize = "cover"; // Adds the full-screen fit
+    currentIndex = (currentIndex + 1) % images.length;
     });
   }
+
 
 changeBackground();
 GateKeeper()
 moving()
-window.addEventListener('keydown', e );
+window.addEventListener('keydown', e);
 window.addEventListener('keyup', Stopmoving);
+window.addEventListener('KeyM', Inventory);
