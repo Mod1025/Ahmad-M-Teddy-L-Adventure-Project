@@ -36,6 +36,9 @@ const cleanup = () => {
     count = 0
     A = false;
     D = false;
+    levelIndex = levelIndex + 1;
+    posX = 0;
+    hasTalked = false; 
 }
 // Stop moving function // 
 const Stopmoving = () => {
@@ -69,7 +72,7 @@ const GateKeeper = () => {
     requestAnimationFrame(GateKeeper);
 }
 let currentLevel = [
-    {triggerPoint: 400, dialague:[{name: "TV", text: "AI robots are taking over the world."}, {name: "Hero", text: "Its 7:55 I should head to collage."}], background: ('img/Medium-start.png')},
+    {triggerPoint: 1400, dialague:[{name: "TV", text: "AI robots are taking over the world."}, {name: "Hero", text: "Its 7:55 I should head to collage."}], background: ('img/Medium-start.png')},
 
     {triggerPoint: 500, dialague: [{name: "Teacher", text: "AI is taking over the world I cant help since im too old."}, {name: "Teacher", text: "I send you on a quest for extra credit! MC!!!"}, 
     {name: "Hero", text:"Extra credit, ill do anything for extra credit!"}, {name: "Teacher", text: "Go home wise student and gather your items to conquer AI!"}], background: ('scene/collage.png')},
