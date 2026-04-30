@@ -1,14 +1,14 @@
 const charc = document.getElementById("player");
 const bubbles = document.getElementById("bubbles");
 const text =  document.getElementById("text-content");
+const npcbubbles = document.getElementById("npc-bubbles"); 
 /* Globle Varables*/ 
 let D = false;
 let A = false;
 let speed = 5;
 let posX = 0;
 let posY = 0;
-let content = ["hi!", "Nice day.", "bye!"];
-let count = 0;
+let count = -1;
 let isTalking = false;
 let hasTalked = false;
 let levelIndex = 0;
@@ -21,11 +21,19 @@ const e = (event) => {
     } else if ((event.code === 'KeyD' || event.code === 'ArrowRight') && isTalking === false) {
         D = true
     } else if (event.code === 'Enter' && isTalking === true) {
-        if (content.length <= count + 1) {
+        if (currentLevel[levelIndex].dialague[count].name === "Hero") {
+            bubbles.style.display = "block"
+            npcbubbles.style.display = "none";
+            text.innerText = currentLevel[levelIndex].dialague[count].text
+        } else if (currentLevel[levelIndex].dialague[count].name !== "Hero") {
+            npcbubbles.style.display = "block"
+            bubbles.style.display = "none";
+            text.innerText = currentLevel[levelIndex].dialague[count].text
+            count ++;
+        } else if (currentLevel[levelIndex].dialague[count].text <= count + 1) {
             cleanup();
         } else {
             count++;
-            text.innerText = currentLevel[levelIndex].dialague[count].text;
         }
     }
 }
@@ -37,7 +45,8 @@ const cleanup = () => {
     A = false;
     D = false;
     levelIndex = levelIndex + 1;
-
+    currentLevel[levelIndex].background;
+    posX = 0;
     hasTalked = false; 
 }
 // Stop moving function // 
@@ -64,8 +73,8 @@ const GateKeeper = () => {
         isTalking = true;
         A = false;
         D = false;
-        bubbles.style.display = "block"
-        text.textContent = content[count];
+        
+        text.textContent = currentLevel[levelIndex].dialague[count].text;
         hasTalked = true;
     }
 
@@ -117,13 +126,17 @@ let currentLevel = [
       let currentIndex = 0;
 
 
+/*let backgrounds = url('scene/goCollage.png')','url('scene/collage.png')',{'url('scene/gohmfromcg.png')'},'url('scene/.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
+  'url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
+     'url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
+]*/
 function changeBackground() {
     let background = document.querySelector('body');
     background.addEventListener('click', function() {
         
         let path = images[currentIndex];
       // 3. The value must be a string: "url('path/to/image.png')"
-    document.body.style.backgroundImage = "url('" + path + "')";
+    document.body.style.backgroundImage = currentLevel[levelIndex].background,
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundAttachment = "fixed";
     document.body.style.backgroundSize = "cover"; // Adds the full-screen fit
