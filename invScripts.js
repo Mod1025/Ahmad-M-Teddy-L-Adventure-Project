@@ -3,7 +3,6 @@ let status_click = false; //current holding.
 let current_itemId = null; //which box I am going to drop it into.
 let current_itemType = null; //what type of item is already in that box.
 let current_itemValue = null; //How many items are in that box(value).
-const charc = document.getElementById("player");
 
 const items = document.querySelectorAll('.item'); //grabs every item in the screen with class ".item".
 
@@ -154,11 +153,12 @@ function character_overlay() {
   // 3. Apply that URL to the 'src' of the display image
   document.getElementById('displayArea').src = newImage;
 }
-// character background
-function changeBackground() {
-let background = document.getElementById('Background');
-background.addEventListener('click', function() {
-  document.body.style.backgroundImage = url('scene/goCollage.png');
+
+window.addEventListener('keydown', function(event) {
+  if (event.key.toLowerCase() === 'm') {
+    const overlay = document.getElementById('overlay-container');
+    const iframe = document.getElementById('overlay-iframe');
+
+    overlay.style.display = 'block';
+  }
 });
-}
-changeBackground();

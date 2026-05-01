@@ -1,3 +1,11 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
 body {
     padding: 0;
     margin:0;
@@ -193,3 +201,232 @@ main > section > figure > a > img:hover {
     right: 35px;
     top: 4vh;
 }
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top:5%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.character{  
+  display: flex;
+  background-color: rgb(0, 0, 0);
+  height: 200px;
+  width: 150px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+body {
+  box-sizing: border-box;
+  width: 100%;
+  height: 80vh;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.title {
+  display: flex;
+  align-self: flex-end; 
+}
+.inventory {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  opacity:  70%;
+  width: 335px;
+  padding-top: 10px;
+  background: #c6c6c6;
+  border-radius: 3px;
+  box-shadow: 5px 5px 0px #555555, inset 4px 4px 0px #fefefe;
+  padding-left: 5px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  margin: 5px 10px;
+  font-family: 'VT323', monospace;
+  font-size: 24px;
+  color: #404040;
+}
+
+.number {
+  font-family: 'VT323', monospace;
+  font-size: 24px;
+  color: #fefefe;
+  position: relative;
+  text-shadow: #333 1px 2px 1px;
+  top: -16px;
+  right: -8px;
+  cursor: default;
+}
+ /* design for the slots */
+.slot {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  background: #8b8b8b;
+  box-shadow: inset 1.5px 1.5px 0px rgba(55, 55, 55, 0.8),
+    inset -2px -2px 0px #ffffff;
+}
+/* slot space */
+.slotSpace {
+  margin: 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+ /* makes the item in the box hidden so it looks like a click and drop */
+.invisible {
+  visibility: hidden;
+}
+/* helps with making sure it can fit into a inventory slot. */
+.item {
+  margin: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.item img {
+  width: 28px;
+}
+
+.ghostItem img {
+  width: 28px;
+}
+.ghostItem .number {
+  top: -20px;
+  right: -13px;
+}
+
+::selection {
+  background: transparent;
+}
+
+::-moz-selection {
+  background: transparent;
+}
+
+.copy {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  width: 350px;
+  display: flex;
+  justify-content: flex-end;
+  color: #333;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+.slotout {
+  width: 70px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  background: #8b8b8b;
+  box-shadow: inset 1.5px 1.5px 0px rgba(55, 55, 55, 0.8),
+    inset -2px -2px 0px #ffffff;
+}
+.crafting {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.menu{
+  display: flex;
+  align-items: center;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  
+}
+.output {
+  width: 85px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  background: #8b8b8b;
+  box-shadow: inset 1.5px 1.5px 0px rgba(55, 55, 55, 0.8),
+    inset -2px -2px 0px #ffffff;
+    margin-right: 5px;
+}
+/* Container hidden by default */
+#inventory-overlay.hidden {
+    display: none;
+}
+/* Overlay covering the viewport */
+#inventory-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Semi-transparent backmground */
+    color: white;
+    z-index: 1000; /* Ensures it is on top */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inventory-content {
+    background-color: #8b8b8b;
+    border-radius: 8px;
+    text-align: center;
+}
+

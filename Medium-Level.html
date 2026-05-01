@@ -20,7 +20,159 @@
             <img src="Img/text template.png" alt="text-bubbles">
             <p id="npctext"></p>
     </div>
+    <!-- <div class="overlay">
+         <iframe id="overlay" class="overlay" src="inventory.html" width="550" height="400"></iframe>
+    </div> -->
+    <div id="overlay">
+        <div class="content">
 
+            <div class="inventory">
+                <div class="menu">
+        
+        
+        
+                    <div class="character">
+                        
+        
+                    </div>
+                    <div class="crafting">
+                        <div class="input">
+                            <div class="slotout"></div>
+                            <div class="slotout"></div>
+                        </div>
+                        <h1>=</h1>
+                        <div class="output"></div>
+                    </div>
+                </div>
+                <h1 class="title">Inventory</h1>
+        
+                <!-- minecraft slots -->
+                <div class="slotSpace">
+                    <div id="0" class="slot"></div>
+                    <div id="1" class="slot"></div>
+                    <div id="2" class="slot"></div>
+                    <div id="3" class="slot"></div>
+                    <div id="4" class="slot"></div>
+                    <div id="5" class="slot"></div>
+                    <div id="6" class="slot"></div>
+                    <div id="7" class="slot">
+                        <!-- first row -->
+                        <!-- this is a item it'll allow me to move the item using js as if i were to move it in the html
+                         and given the number value(35) it'll allow me to seperate the item such as seperating it into diffrent sections such as 
+                         seperating 33 to 32 and 1 taking up diffrent inventory slots. -->
+                        <!-- this helps us format the item -->
+                        <div class="item">
+                            <!-- image for item -->
+                            <img
+                                src="https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/c/c5/Oak_Log_Axis_Y_JE5_BE3.png/150px-Oak_Log_Axis_Y_JE5_BE3.png?version=be4f749b0035ee90956bab6c5361eeb5" />
+                            <!-- this allows me to stack items -->
+                            <div class="number">
+                                33
+                            </div>
+                        </div>
+                    </div>
+                    <div id="8" class="slot"></div>
+                    <div id="9" class="slot"></div>
+                    <div id="10" class="slot"></div>
+                    <div id="11" class="slot"></div>
+                    <div id="12" class="slot"></div>
+                    <div id="13" class="slot"></div>
+                    <div id="14" class="slot">
+                        <div class="item" id="cobblestone">
+                            <img
+                                src="https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/6/6a/Cobblestone_JE6_BE3.png/150px-Cobblestone_JE6_BE3.png?version=5d7e2cc3c7485a77f63449e05baecc65" />
+                            <div class="number">
+                                3
+                            </div>
+                        </div>
+                    </div>
+                    <div id="15" class="slot"></div>
+                    <div id="16" class="slot"></div>
+                    <div id="17" class="slot"></div>
+                    <div id="18" class="slot"></div>
+                    <div id="19" class="slot"></div>
+                    <div id="20" class="slot">
+                        <div class="item" id="cobblestone">
+                            <img
+                                src="https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/6/6a/Cobblestone_JE6_BE3.png/150px-Cobblestone_JE6_BE3.png?version=5d7e2cc3c7485a77f63449e05baecc65" />
+                            <div class="number">
+                                14
+                            </div>
+                        </div>
+                    </div>
+                    <div id="21" class="slot"></div>
+                    <div id="22" class="slot"></div>
+                    <div id="23" class="slot"></div>
+                    <div id="24" class="slot"></div>
+                    <div id="25" class="slot"></div>
+                    <div id="26" class="slot"></div>
+                </div>
+                <div class="slotSpace">
+                    <div id="35" class="slot">
+                        <div class="item" id="diamond_sword">
+                            <img
+                                src="https://gamepedia.cursecdn.com/minecraft_gamepedia/6/6a/Diamond_Sword_JE2_BE2.png?version=af7aeb1f9f856f57ddf2cb8076ed33d5" />
+                            <div class="number">1</div>
+                        </div>
+                    </div>
+                    <div id="27" class="slot">
+                        <div class="item" id="steak">
+                            <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/04/Steak_JE4_BE3.png" />
+                            <div class="number">12</div>
+                        </div>
+                    </div>
+                    <div id="28" class="slot">
+                        <div class="item" id="diamond">
+                            <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/ab/Diamond_JE3_BE3.png" />
+                            <div class="number">
+                                33
+                            </div>
+                        </div>
+                    </div>
+                    <div id="29" class="slot">
+                        <div class="item" id="golden_apple">
+                            <img
+                                src="https://gamepedia.cursecdn.com/minecraft_gamepedia/e/ed/Enchanted_Golden_Apple_JE2_BE2.gif?version=f82edf97a29f7f3ff3a1ca81b825deeb" />
+                            <div class="number">
+                                8
+                            </div>
+                        </div>
+                    </div>
+                    <div id="30" class="slot">
+                        <div class="item" id="iron_ingot">
+                            <img
+                                src="https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/0/06/Iron_Ingot_JE2_BE2.png/150px-Iron_Ingot_JE2_BE2.png?version=04d96108df98008b99e8e1a29c754c8d" />
+                            <div class="number">
+                                12
+                            </div>
+                        </div>
+                    </div>
+                    <div id="31" class="slot">
+                        <div class="item" id="pic_diamond">
+                            <img
+                                src="https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/7/7a/Diamond_Pickaxe_JE2_BE2.png/150px-Diamond_Pickaxe_JE2_BE2.png?version=a87b813f642bfc772f30e1b74dbafe20" />
+                            <div class="number">1</div>
+                        </div>
+                    </div>
+                    <div id="32" class="slot">
+                        <div class="item" id="cobblestone">
+                            <img
+                                src="https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/6/6a/Cobblestone_JE6_BE3.png/150px-Cobblestone_JE6_BE3.png?version=5d7e2cc3c7485a77f63449e05baecc65" />
+                            <div class="number">
+                                32
+                            </div>
+                        </div>
+                    </div>
+                    <div id="33" class="slot"></div>
+                    <div id="34" class="slot"></div>
+                </div>
+            </div>
+            <div class="copy">
+            </div>
+        </div>
+    </div>
+   
+    <!-- OVERLAY -->
     <!--Characters-->
     <div id="Teacher">
         <figure><img src="Img/Teacher-Charc.svg" alt=""></figure>
@@ -60,5 +212,6 @@
     
 </body>
 <script src="Javascript/Characters-Keyboard.js"></script>
-<script src="Javascript/converstaions.js"></script>
+<script src="invScripts.js"></script>
+
 </html>
