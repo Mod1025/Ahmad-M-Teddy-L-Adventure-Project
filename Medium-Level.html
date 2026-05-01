@@ -1,63 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medium-level</title>
 
-    <link rel="stylesheet" href="Style.css" />
-  </head>
-  <body class="MediumBody">
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body class="MediumBody">
     <div id="player">
-      <figure><img src="/Img/Medium-level-Charc.svg" alt="" /></figure>
-      <div id="bubbles">
-        <img src="Img/text template.png" alt="text-bubbles" />
-        <p id="text-content"></p>
-      </div>
-      <div id="npc-bubbles">
-        <img src="Img/text template.png" alt="text-bubbles" />
-        <p id="text-content"></p>
-      </div>
+        <figure><img src="/Img/Medium-level-Charc.svg" alt=""></figure>
+        <div id="bubbles">
+            <img src="Img/text template.png" alt="text-bubbles">
+            <p id="text-content"></p>
+        </div>
+        <div id="npc-bubbles">
+            <img src="Img/text template.png" alt="text-bubbles">
+            <p id="text-content"></p>
+        </div>
     </div>
     <div id="inventory-overlay" class="hidden">
-      <div class="content">
-        <div class="inventory">
-          <div id="inventory-overlay" class="overlay-hidden">
-            <div class="inventory-container">
-              <button id="close-inventory" class="close-btn">&times;</button>
-
-              <iframe
-                src="Inventory/inventory.html"
-                id="inventory-frame"
-              ></iframe>
+        <div class="content">
+            <div class="inventory">
+                <div class="menu">
+                    <div class="character"></div>
+                    <div class="crafting">
+                        <div class="input">
+                            <div class="slotout"></div>
+                            <div class="slotout"></div>
+                        </div>
+                        <h1>=</h1>
+                        <div class="output"></div>
+                    </div>
+                </div>
+                <h1 class="title">Inventory</h1>
+                <div class="slotSpace">
+                    <div id="7" class="slot">
+                        <div class="item">
+                            <img src="https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/c/c5/Oak_Log_Axis_Y_JE5_BE3.png/150px-Oak_Log_Axis_Y_JE5_BE3.png?version=be4f749b0035ee90956bab6c5361eeb5" />
+                            <div class="number">33</div>
+                        </div>
+                    </div>
+                    </div>
             </div>
-          </div>
-          <div class="menu">
-            <div class="character"></div>
-            <div class="crafting">
-              <div class="input">
-                <div class="slotout"></div>
-                <div class="slotout"></div>
-              </div>
-              <h1>=</h1>
-              <div class="output"></div>
-            </div>
-          </div>
-          <h1 class="title">Inventory</h1>
-          <div class="slotSpace">
-            <div id="7" class="slot">
-              <div class="item">
-                <img
-                  src="https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/c/c5/Oak_Log_Axis_Y_JE5_BE3.png/150px-Oak_Log_Axis_Y_JE5_BE3.png?version=be4f749b0035ee90956bab6c5361eeb5"
-                />
-                <div class="number">33</div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-    <a class="Arrow" id="Background"><img src="Img/arrow.png" /></a>
-  </body>
-  <script src="Javascript/Characters-Keyboard.js"></script>
+    <a class="Arrow" id="Background"><img src="Img/arrow.png" ></a>
+    
+
+    
+</body>
+<script src="Javascript/Characters-Keyboard.js"></script>
 </html>
