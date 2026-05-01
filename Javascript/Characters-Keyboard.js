@@ -16,7 +16,7 @@ let isTalking = false;
 let hasTalked = false;
 let levelIndex = 0;
 
-// moving function //
+// Keys Function //
 const e = (event) => {
 
     if ((event.code === 'KeyA' || event.code === 'ArrowLeft') && isTalking === false) {
@@ -118,13 +118,13 @@ let currentLevel = [
 
     {sceneID: "airplane", triggerPoint: 700, hasdialague: true, dialague:[{name: "soldier", text: "Follow me to base, theirs incoming fire."}], background: ('scene/8.png')},
 
-    {sceneID: "warehouse1", triggerPoint: 800, hasdialague: true, dialague:[{name: "soldier", text: "We need the secrete weapon."}, {name: "Hero", text: "No it’s too dangerous."}, 
+    {sceneID: "warehouse1", triggerPoint: 800, hasdialague: true, dialague:[{name: "soldier", text: "We need the secret weapon."}, {name: "Hero", text: "No it’s too dangerous."}, 
     {name: "soldier", text: "The ENERGY SWORD"}, {name: "Hero", text: "Sure."},
     {name: "soldier", text: "It was separated to two warehouses."},{name: "Hero", text: "Will I get more extra credit?"}], background: ('scene/14.png')},
 
     {combatmode: true, hasdialague: false, background: ('scene/16.png')},
 
-    {sceneID: "warehouse1", triggerPoint: 800, combatmode: false, hasdialague: true, dialague: [{name: "soldier", text: "Go to the second company get the piece!"}, {name: "Hero", text: "okay."}],background: ('scene/17.png')},
+    {sceneID: "warehouse1", triggerPoint: 800, combatmode: false, hasdialague: true, dialague: [{name: "soldier", text: "Go to the second company, and retrive the piece!"}, {name: "Hero", text: "okay."}],background: ('scene/17.png')},
 
     {combatmode: true, hasdialague: false, background: ('scene/18.png')},
 
@@ -137,39 +137,6 @@ let currentLevel = [
     {sceneID: "airplane", triggerPoint: 900, hasdialague: true, dialague:[{name: "soldier", text: "Goodbye, Thank you."}], background: ('scene/8.png')}
 
 ]
-    const images = [
-        "scene/1.png",
-        "scene/2.png",
-        "scene/3.png",
-        "Img/Medium-start.png",
-        "scene/5.png", 
-        "scene/6.png",
-        "scene/7.png",
-        "scene/8.png",
-        "scene/9.png",
-        "scene/10.png",
-        "scene/11.png",
-        "scene/12.png",
-        "scene/13.png",
-        "scene/14.png",
-        "scene/15.png",
-        "scene/16.png",
-        "scene/17.png",
-        "scene/18.png",
-        "scene/19.png",
-        "scene/20.png",
-        "scene/21.png",
-        "scene/22.png"
-      ];
-
-
-      let currentIndex = 0;
-
-
-/*let backgrounds = url('scene/goCollage.png')','url('scene/collage.png')',{'url('scene/gohmfromcg.png')'},'url('scene/.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
-  'url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
-     'url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')','url('scene/castle.png')',
-]*/
 function changeBackground() {
     document.getElementById("Background").addEventListener('click', function() {
         levelIndex++;
