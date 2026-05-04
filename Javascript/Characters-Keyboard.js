@@ -97,16 +97,16 @@ const GateKeeper = () => {
     
 }
 let currentLevel = [
-    {sceneID: "Home", triggerPoint: 1400, hasdialague: true, dialague:[{name: "TV", text: "AI robots are taking over the world."}, {name: "Hero", text: "Its 7:55 I should head to collage."}], background: ('img/Medium-start.png')},
+    {sceneID: "Home", LookAt: "left", triggerPoint: 1400, hasdialague: true, dialague:[{name: "TV", text: "AI robots are taking over the world."}, {name: "Hero", text: "Its 7:55 I should head to collage."}], background: ('img/Medium-start.png')},
 
     { sceneID: "way-college", hasdialague: false, background: ('scene/1.png')},
 
-    {sceneID: "classroom", triggerPoint: 850, hasdialague: true, dialague: [{name: "Teacher", text: "AI is taking over the world I cant help since im too old."}, {name: "Teacher", text: "I send you on a quest for extra credit! MC!!!"}, 
+    {sceneID: "classroom", LookAt: "left", triggerPoint: 850, hasdialague: true, dialague: [{name: "Teacher", text: "AI is taking over the world I cant help since im too old."}, {name: "Teacher", text: "I send you on a quest for extra credit! MC!!!"}, 
     {name: "Hero", text:"Extra credit, ill do anything for extra credit!"}, {name: "Teacher", text: "Go home wise student and gather your items to conquer AI!"}], background: ('scene/2.png')},
 
     {hasdialague: false, background: ('scene/3.png')},
 
-    {sceneID: "Home2", triggerPoint: 600, hasdialague: true, dialague:[{name: "TV", text: "Air Line (67 + 67)/67 to AI military base."}], background: ('img/Medium-start.png')},
+    {sceneID: "Home2", LookAt: "left", triggerPoint: 600, hasdialague: true, dialague:[{name: "TV", text: "Air Line (67 + 67)/67 to AI military base."}], background: ('img/Medium-start.png')},
 
     {hasdialague: false, background: ('scene/5.png')}, 
 
@@ -118,17 +118,17 @@ let currentLevel = [
 
     {sceneID: "airplane", triggerPoint: 700, hasdialague: true, dialague:[{name: "soldier", text: "Follow me to base, theirs incoming fire."}], background: ('scene/8.png')},
 
-    {sceneID: "warehouse1", triggerPoint: 800, hasdialague: true, dialague:[{name: "soldier", text: "We need the secret weapon."}, {name: "Hero", text: "No it’s too dangerous."}, 
+    {sceneID: "warehouse1", LookAt: "left", triggerPoint: 800, hasdialague: true, dialague:[{name: "soldier", text: "We need the secret weapon."}, {name: "Hero", text: "No it’s too dangerous."}, 
     {name: "soldier", text: "The ENERGY SWORD"}, {name: "Hero", text: "Sure."},
     {name: "soldier", text: "It was separated to two warehouses."},{name: "Hero", text: "Will I get more extra credit?"}], background: ('scene/14.png')},
 
     {combatmode: true, hasdialague: false, background: ('scene/16.png')},
 
-    {sceneID: "warehouse1", triggerPoint: 800, combatmode: false, hasdialague: true, dialague: [{name: "soldier", text: "Go to the second company, and retrive the piece!"}, {name: "Hero", text: "okay."}],background: ('scene/17.png')},
+    {sceneID: "warehouse1",LookAt: "left", triggerPoint: 800, combatmode: false, hasdialague: true, dialague: [{name: "soldier", text: "Go to the second company, and retrive the piece!"}, {name: "Hero", text: "okay."}],background: ('scene/17.png')},
 
     {combatmode: true, hasdialague: false, background: ('scene/18.png')},
 
-    {sceneID: "warehouse1", combatmode: false, hasdialague: false, background: ('scene/20.png')},
+    {sceneID: "warehouse1", combatmode: false, hasdialague: true, dialague: [{name: "soldier", text: "Now go you need to do some coding"}, {name: "Hero", text: "Okay!"}], background: ('scene/20.png')},
 
     {combatmode: false, hasdialague: false, background: ('scene/21.png')}, 
 
