@@ -8,7 +8,7 @@ const Arrow = document.getElementById("Background");
 /* Globle Varables*/ 
 let D = false;
 let A = false;
-let speed = 5;
+let speed = 15;
 let posX = 0;
 let posY = 0;
 let count = 0;
@@ -137,6 +137,8 @@ let currentLevel = [
     {sceneID: "airplane", triggerPoint: 900, hasdialague: true, dialague:[{name: "soldier", text: "Goodbye, Thank you."}], background: ('scene/8.png')}
 
 ]
+
+
 function changeBackground() {
     document.getElementById("Background").addEventListener('click', function() {
         levelIndex++;
@@ -150,6 +152,7 @@ function changeBackground() {
         document.body.className = currentLevel[levelIndex].sceneID;
         Arrow.style.display = "none";
         hasTalked = false;
+
     });
 }
 const inventory = document.getElementById('inventory-overlay');
