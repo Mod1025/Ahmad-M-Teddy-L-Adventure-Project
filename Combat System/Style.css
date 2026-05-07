@@ -13,6 +13,10 @@ body {
 }
 #player , #enemy {
     position: absolute;
+    top: 80vh;
+}
+#player {
+    transform: scaleX(-1);
 }
 #player img , #enemy img {
     width: 150px;
