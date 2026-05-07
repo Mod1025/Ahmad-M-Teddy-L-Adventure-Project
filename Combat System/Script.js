@@ -23,17 +23,37 @@ enemy.style.left = enemyX + "px";
 let traget = 0;
 let moving = false; 
 let max = 800;
-let min = 400;
+let min = 100;
 const Emoving = () => {
-    let des = Math.floor(Math.random() * max - min + min)
-    let newTraget = (traget === des);
+    let des = Math.floor(Math.random() *(max - min) + min)
+    if (Math.abs(enemyX - des) < 200) {
+       Emoving();
+    } else {
+        traget = des;
+    }   
+    moving = true;
 }
 const Efacing = () => {
     if (enemyX < traget) {
-        let Lposition = enemyX + traget
+        let Lposition = enemyX + enemySpeed
+        enemyX = Lposition
         enemy.style.left = Lposition + "px";
+        enemy.style.transform = "scaleX(-1)";
     } else if (enemyX > traget) {
-        let Rposition = enemyX - traget
-        enemy.style.right = Rposition + "px";
+        let Rposition = enemyX - enemySpeed
+        enemyX = Rposition
+        enemy.style.left = Rposition + "px";
+        enemy.style.transform = "scaleX(1)";
+    }  
+    if (Math.abs(enemyX - traget) < enemySpeed) {
+        enemyX = traget
+        moving = "waiting"
+    }  
+    if (moving === "waiting") {
+        setTimeout( () => Emoving(), 1000) 
     }
+    requestAnimationFrame(Efacing);
 }
+
+Emoving();
+Efacing();

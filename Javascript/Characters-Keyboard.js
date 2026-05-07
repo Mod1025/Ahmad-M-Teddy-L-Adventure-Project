@@ -135,7 +135,6 @@ let currentLevel = [
     {combatmode: true, hasdialague: false, background: ('scene/21.png')}, 
 
     {sceneID: "airplane", triggerPoint: 900, hasdialague: true, dialague:[{name: "soldier", text: "Goodbye, Thank you."}], background: ('scene/8.png')}
-
 ]
 
 
