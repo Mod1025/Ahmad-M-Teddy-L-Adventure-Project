@@ -10,11 +10,7 @@ const PBullet = document.getElementById("PBullet");
 //Main vars //
 let playerHP = 100;
 let enemyHP = 100;
-let D = false;
-let A = false;
-let speed = 10;
-let posX = 0;
-let posY = 0;
+
 // Shooting vars // 
 let PBulletX = -100;
 let isPBulletActive = false;
@@ -107,21 +103,6 @@ const Efacing = () => {
     requestAnimationFrame(Efacing);  
 }
 
-// Player movement // 
-const e = (event) => {
-
-    if (event.code === 'KeyA' || event.code === 'ArrowLeft') {
-        A = true
-    } else if (event.code === 'KeyD' || event.code === 'ArrowRight') {
-        D = true
-    }
-}
-
-const Stopmoving = () => {
-    A = false
-    D = false
-}
-
 const Pmoving = () => {
 if (A === true && posX > 0) {
     player.style.left = (posX = posX - speed) + "px";
@@ -178,11 +159,3 @@ const PshieldKeyup = (e) => {
    isPlayerShieldActive = false;
    Psheild.style.display = "none";
 }
-Pmoving();
-Emoving();
-Efacing();
-window.addEventListener('keydown', PshieldKeydown);
-window.addEventListener('keyup', PshieldKeyup);
-window.addEventListener('click', PShooting)
-window.addEventListener('keydown', e); 
-window.addEventListener('keyup', Stopmoving);
