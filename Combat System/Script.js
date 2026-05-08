@@ -1,8 +1,11 @@
 const player = document.getElementById("player");
 const enemy = document.getElementById("enemy");
-const Esheild = document.getElementById("Shield");
+const Psheild = document.getElementById("PShield");
+const Esheild = document.getElementById("EShield");
 const PHealth = document.getElementById("player-inner-Line");
 const EHealth = document.getElementById("enemy-inner-Line");
+const bullet = document.getElementById("Bullet");
+const PBullet = document.getElementById("PBullet");
 
 //Main vars //
 let playerHP = 100;
@@ -13,18 +16,20 @@ let speed = 10;
 let posX = 0;
 let posY = 0;
 // Shooting vars // 
+let PBulletX = -100;
+let isPBulletActive = false;
 let bulletX = -100;
 let isBulletActive = false;
 let bulletSpeed = 10;
-// player start point //
-let playerX = 0
+let PbulletSpeed = 10;
 
 // enemy movement vars //
 let enemyX = window.innerWidth - 200;
 let enemySpeed = 5;
-let isShieldActive = false;
+let isEnemyShieldActive = false;
+let isPlayerShieldActive = false;
 // start positions styling // 
-player.style.left = playerX + "px";
+player.style.left = posX + "px";
 enemy.style.left = enemyX + "px";
 
 // enemy movement fuction //
@@ -41,13 +46,25 @@ const Emoving = () => {
         traget = des;
     }   
     moving = true;
+    isEnemyShieldActive = false;
 }
 const Efacing = () => {
-    if (Math.abs(enemyX - traget) < enemySpeed) {
-        enemyX = traget
-        moving = "timerStarted"
-    } 
+
     if (moving === true) {
+        if (Math.abs(enemyX - traget) < enemySpeed) {
+           enemyX = traget
+           enemy.style.left = enemyX + "px";
+           moving = "waiting";
+           isEnemyShieldActive = true;
+
+            setTimeout(() => {
+               Emoving();
+                }, 2000
+            );
+            EShielding();
+            Eshooting();
+            
+        } 
         if (enemyX < traget) {
             let Lposition = enemyX + enemySpeed
             enemyX = Lposition
@@ -59,12 +76,34 @@ const Efacing = () => {
             enemy.style.left = Rposition + "px";
             enemy.style.transform = "scaleX(1)";     
         }   
-    }
-    if (moving === "timerStarted") {
-            setTimeout(() => Emoving(), 100) 
-            moving = true;
+    } 
+    if (isBulletActive === true) {
+        bulletX = bulletX - bulletSpeed;
+        bullet.style.left = bulletX + "px";
+
+        if ((bulletX - posX) < 50) {
+            isBulletActive = false;
+            bullet.style.display = "none";
+            if (isPlayerShieldActive === false) {
+             playerHP = playerHP - 20;
+             PHealth.style.width = playerHP + "%";    
+            }
         }
-    
+    }
+    if (isPBulletActive === true) {
+        PBulletX = PBulletX + PbulletSpeed;
+        PBullet.style.left = PBulletX + "px";
+
+        if (PBulletX > enemyX) {
+           isPBulletActive = false;
+           PBullet.style.display = "none";
+
+           if (isEnemyShieldActive === false) {
+              enemyHP = enemyHP - 10;
+              EHealth.style.width = enemyHP + "%"; 
+            }
+        }        
+    }
     requestAnimationFrame(Efacing);  
 }
 
@@ -96,11 +135,54 @@ requestAnimationFrame(Pmoving);
 }
 
 // Enemy shooting System // 
+const Eshooting = () => {
+    if (isEnemyShieldActive === false) {
+        bulletX = enemyX;
+        isBulletActive = true;
+        bullet.style.display = "block";
+        bullet.style.top = 900 + "px";
+    }
+}
+// Enemy shielding system //
+const EShielding = () => {
+    let min = 1
+    let max = 100
+    let rshield = Math.floor(Math.random() * (max - min) - min)
+    if (rshield > 50) {
+        isEnemyShieldActive = true;
+        Esheild.style.display = "block";
+    } else {
+        isEnemyShieldActive = false;
+        Esheild.style.display = "none";
+    }
+}
+// Player Shooting system //
+const PShooting = () => {
+    if (isPBulletActive === false && isPlayerShieldActive === false) {
+    PBulletX = posX;
+    PBullet.style.display = "block";
+    PBullet.style.top = 900 + "px";
+    isPBulletActive = true;  
+    }
+   
+}
+// Player shield system //
 
-
-
+const PshieldKeydown = (e) => {
+    if (e.code === 'KeyS') {
+        isPlayerShieldActive = true;
+        Psheild.style.display = "block";
+    }
+}
+const PshieldKeyup = (e) => {
+   isPlayerShieldActive = false;
+   Psheild.style.display = "none";
+}
 Pmoving();
 Emoving();
 Efacing();
+window.addEventListener('keydown', PshieldKeydown);
+window.addEventListener('keyup', PshieldKeyup);
+window.addEventListener('click', PShooting)
 window.addEventListener('keydown', e); 
 window.addEventListener('keyup', Stopmoving);
