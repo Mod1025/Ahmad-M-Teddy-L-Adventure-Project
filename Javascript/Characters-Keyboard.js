@@ -5,14 +5,21 @@ const npcbubbles = document.getElementById("npc-bubbles");
 const npctext = document.getElementById("npctext");
 const Arrow = document.getElementById("Background");
 
+
 // ID's FOR Combat System // 
 const enemy = document.getElementById("enemy");
 const Psheild = document.getElementById("PShield");
 const Esheild = document.getElementById("EShield");
+const PHealthcon = document.getElementById("Health-bar-player");
+const EHealthcon = document.getElementById("Health-bar-enemy");
 const PHealth = document.getElementById("player-inner-Line");
 const EHealth = document.getElementById("enemy-inner-Line");
 const bullet = document.getElementById("Bullet");
 const PBullet = document.getElementById("PBullet");
+
+// ID's FOR chooses System // 
+const Chooses = document.getElementById("Main-Container");
+const Question = document.getElementById("Q");
 
 /* Globle Varables*/
 let D = false;
@@ -24,6 +31,8 @@ let count = 0;
 let isTalking = false;
 let hasTalked = false;
 let levelIndex = 0;
+let isChoosing = false;
+let hasChoice = false;
 
 /* Globle Varables For Combat System*/
 //Main vars //
@@ -52,9 +61,9 @@ player.style.left = posX + "px";
 // Keys Function //
 const e = (event) => {
 
-    if ((event.code === 'KeyA' || event.code === 'ArrowLeft') && isTalking === false) {
+    if ((event.code === 'KeyA' || event.code === 'ArrowLeft') && isTalking === false && isChoosing === false) {
         A = true
-    } else if ((event.code === 'KeyD' || event.code === 'ArrowRight') && isTalking === false) {
+    } else if ((event.code === 'KeyD' || event.code === 'ArrowRight') && isTalking === false && isChoosing === false) {
         D = true
     } else if (event.code === 'Enter' && isTalking === true) {
         if (count >= currentLevel[levelIndex].dialague.length - 1) {
@@ -77,6 +86,10 @@ const cleanup = () => {
     D = false;
     hasTalked = true;
 
+    if (currentLevel[levelIndex].isChoosing) {
+        displaychoice();
+    }
+
 }
 // Stop moving function // 
 const Stopmoving = () => {
@@ -85,10 +98,10 @@ const Stopmoving = () => {
 }
 // Moving function //
 const moving = () => {
-    if (A === true && posX > 0 && isTalking === false) {
+    if (A === true && posX > 0 && isTalking === false && isChoosing === false) {
         player.style.left = (posX = posX - speed) + "px";
         player.style.transform = "scaleX(-1)";
-    } else if (D === true && posX < window.innerWidth - 245 && isTalking === false) {
+    } else if (D === true && posX < window.innerWidth - 245 && isTalking === false && isChoosing === false) {
         player.style.left = (posX = posX + speed) + "px";
         player.style.transform = "scaleX(1)";
     }
@@ -127,6 +140,11 @@ const GateKeeper = () => {
             Arrow.style.display = "block";
         }
     }
+    if (currentLevel[levelIndex].isChoosing === true && isChoosing === false) {
+        if (posX > 400) {
+            displaychoice();
+        }
+    }
 
 }
 
@@ -143,10 +161,12 @@ let currentLevel = [
     { hasdialague: false, playerY: 550, background: ('scene/3.png') },
 
     { sceneID: "Home2", playerY: 0, LookAt: "left", triggerPoint: 600, hasdialague: true, dialague: [{ name: "TV", text: "Air Line (67 + 67)/67 to AI military base." }], background: ('img/Medium-start.png') },
+    { sceneID: "Home2", LookAt: "left", triggerPoint: 600, hasdialague: true, dialague: [{ name: "TV", text: "Air Line (67 + 67)/67 to AI military base." }, { name: "Hero", text: "I need to Remember This" }], background: ('img/Medium-start.png') },
 
-    { hasdialague: false,playerY: 515, background: ('scene/5.png') },
+    { hasdialague: false, playerY: 515, background: ('scene/5.png') },
 
-    { hasdialague: false,playerY: 400, background: ('scene/6.png') },
+    { hasdialague: false, playerY: 400, background: ('scene/6.png') },
+    { hasdialague: false, isChoosing: true, hasChoice: true, choiceData: { question: "Which gate you choose?", options: ["1", "2", "3"], outcomes: { "1": { Deadly: true }, "2": { Deadly: true }, "3": { text: "Have great fly." } } }, background: ('scene/6.png') },
 
     { hasdialague: false, background: ('scene/7.png') },
 
@@ -166,7 +186,7 @@ let currentLevel = [
 
     { combatmode: true, hasdialague: false, background: ('scene/18.png') },
 
-    { sceneID: "warehouse1",playerY: 0, combatmode: false, hasdialague: true, dialague: [{ name: "soldier", text: "Now go you need to do some coding" }, { name: "Hero", text: "Okay!" }], background: ('scene/20.png') },
+    { sceneID: "warehouse1", playerY: 0, combatmode: false, hasdialague: true, dialague: [{ name: "soldier", text: "Now go you need to do some coding" }, { name: "Hero", text: "Okay!" }], background: ('scene/20.png') },
 
     { combatmode: true, hasdialague: false, background: ('scene/21.png') },
 
@@ -174,37 +194,51 @@ let currentLevel = [
 
     { sceneID: "airplane", playerY: 0, triggerPoint: 900, hasdialague: true, dialague: [{ name: "soldier", text: "Goodbye, Thank you." }], background: ('scene/8.png') }
 ]
-function changeBackground() {
-    document.getElementById("Background").addEventListener('click', function () {
-        levelIndex++;
-        posX = 0;
-        player.style.left = posX + "px";
-        document.body.style.backgroundImage = "url('" + currentLevel[levelIndex].background + "')";
-        document.body.style.backgroundPosition = "center";
-        document.body.style.backgroundRepeat = "no-repeat";
-        document.body.style.backgroundAttachment = "fixed";
-        document.body.style.backgroundSize = "cover";
-        document.body.className = currentLevel[levelIndex].sceneID;
-        Arrow.style.display = "none";
-        hasTalked = false;    
-        setSceneY();
-        if (currentLevel[levelIndex].combatmode) {
-            Emoving();
-        }
-    });
-}
 
-function setSceneY(){
-    // let scene = currentLevel.find(level => level.sceneID === sceneID);
-    console.log('SceneY Called');
-    if(currentLevel[levelIndex].playerY) {
-        console.log(currentLevel[levelIndex].playerY);
-        player.style.top = currentLevel[levelIndex].playerY + 'px';
+
+
+//------choices Functions ------// 
+const choiceclick = (outcomes) => {
+    Chooses.innerHTML = "";
+    Chooses.style.display = "none";
+
+    if (outcomes.Deadly) {
+        alert("you are gleaned, try again")
+        location.reload();
+    } else {
+        isChoosing = false
+        npcbubbles.style.display = "block";
+        npctext.innerText = outcomes.text;
+        Arrow.style.display = "block";
     }
 }
+const displaychoice = () => {
+    isChoosing = true;
+
+    const level = currentLevel[levelIndex];
+    if (!level.choiceData) return;
+
+    isChoosing = true;
+    Stopmoving();
+
+    Question.textContent = level.choiceData.question;
+    Chooses.innerHTML = "";
+    Chooses.style.display = "flex";
+
+    level.choiceData.options.forEach(optionText => {
+        const btn = document.createElement("button");
+        btn.className = "button";
+        btn.textContent = optionText;
+
+        btn.addEventListener("click", () => {
+            const selectedOutcome = level.choiceData.outcomes[optionText];
+            choiceclick(selectedOutcome);
+        });
+
+        Chooses.appendChild(btn);
+    });
+}
 //------Combatmode Function ------// 
-
-
 const Emoving = () => {
     if (currentLevel[levelIndex].combatmode === true) {
         let max = window.innerWidth / 2;
@@ -257,20 +291,25 @@ const PShooting = () => {
 // Combat Movemenets //
 
 const PshieldKeydown = (e) => {
-    if (e.code === 'KeyS') {
+    if (e.code === 'KeyS' && currentLevel[levelIndex].combatmode === true) {
         isPlayerShieldActive = true;
         Psheild.style.display = "block";
     }
 }
 const PshieldKeyup = (e) => {
-    isPlayerShieldActive = false;
-    Psheild.style.display = "none";
+    if (e.code === 'KeyS') {
+        isPlayerShieldActive = false;
+        Psheild.style.display = "none";
+    }
+
 }
 //------Combatmode System ------------------------// 
 
 const Efacing = () => {
-    if (currentLevel[levelIndex].combatmode) {
+    if (currentLevel[levelIndex].combatmode === true) {
         enemy.style.display = "block";
+        PHealthcon.style.display = "block";
+        EHealthcon.style.display = "block";
 
         if (movingstatus === true) {
             if (Math.abs(enemyX - traget) < enemySpeed) {
@@ -326,24 +365,52 @@ const Efacing = () => {
                 }
             }
         }
+        if (enemyHP <= 0) {
+            enemyHP = 100;
+            EHealth.style.width = "100" + "%";
+            currentLevel[levelIndex].combatmode = false;
+            enemy.style.display = "none";
+            Arrow.style.display = "block";
 
-    }  else {
-        enemy.style.display = "none";
-    }
-    if (currentLevel[levelIndex].hasdialague === true) {
-        if (posX > currentLevel[levelIndex].triggerPoint && isTalking === false && hasTalked === false) {
-            isTalking = true;
-            A = false; D = false;
-            textswap();  
-        }    
-    } else if (posX > window.innerWidth - 275) {
-        Arrow.style.display = "block";
+            PHealthcon.style.display = "none";
+            PHealth.style.width = "100" + "%";
+            playerHP = 100;
+        }
+        if (playerHP <= 0) {
+            alert("Replay");
+            location.reload();
+        }
+
     }
     requestAnimationFrame(Efacing);
 }
 
-
-
+function changeBackground() {
+    document.getElementById("Background").addEventListener('click', function () {
+        levelIndex++;
+        posX = 0;
+        player.style.left = posX + "px";
+        document.body.style.backgroundImage = "url('" + currentLevel[levelIndex].background + "')";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundAttachment = "fixed";
+        document.body.style.backgroundSize = "cover";
+        document.body.className = currentLevel[levelIndex].sceneID;
+        Arrow.style.display = "none";
+        hasTalked = false;
+        setSceneY();
+        if (currentLevel[levelIndex].combatmode) {
+            Emoving();
+        }
+    });
+}
+function setSceneY() {
+    console.log('SceneY Called');
+    if (currentLevel[levelIndex].playerY) {
+        console.log(currentLevel[levelIndex].playerY);
+        player.style.top = currentLevel[levelIndex].playerY + 'px';
+    }
+}
 const inventory = document.getElementById('inventory-overlay');
 
 document.addEventListener('keydown', (event) => {
