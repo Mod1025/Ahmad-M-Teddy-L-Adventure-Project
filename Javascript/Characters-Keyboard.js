@@ -129,32 +129,33 @@ const GateKeeper = () => {
     }
 
 }
-let currentLevel = [
-    { sceneID: "Home", LookAt: "left", triggerPoint: 1400, hasdialague: true, dialague: [{ name: "TV", text: "AI robots are taking over the world." }, { name: "Hero", text: "Its 7:55 I should head to collage." }], background: ('img/Medium-start.png') },
 
-    { sceneID: "way-college", hasdialague: false, background: ('scene/1.png') },
+let currentLevel = [
+    { sceneID: "Home", playerY: 0, LookAt: "left", triggerPoint: 1400, hasdialague: true, dialague: [{ name: "TV", text: "AI robots are taking over the world." }, { name: "Hero", text: "Its 7:55 I should head to collage." }], background: ('img/Medium-start.png') },
+
+    { sceneID: "way-college", playerY: 600, hasdialague: false, background: ('scene/1.png') },
 
     {
-        sceneID: "classroom", LookAt: "left", triggerPoint: 850, hasdialague: true, dialague: [{ name: "Teacher", text: "AI is taking over the world I cant help since im too old." }, { name: "Teacher", text: "I send you on a quest for extra credit! MC!!!" },
+        sceneID: "classroom", playerY: 700, LookAt: "left", triggerPoint: 850, hasdialague: true, dialague: [{ name: "Teacher", text: "AI is taking over the world I cant help since im too old." }, { name: "Teacher", text: "I send you on a quest for extra credit! MC!!!" },
         { name: "Hero", text: "Extra credit, ill do anything for extra credit!" }, { name: "Teacher", text: "Go home wise student and gather your items to conquer AI!" }], background: ('scene/2.png')
     },
 
-    { hasdialague: false, background: ('scene/3.png') },
+    { hasdialague: false, playerY: 550, background: ('scene/3.png') },
 
-    { sceneID: "Home2", LookAt: "left", triggerPoint: 600, hasdialague: true, dialague: [{ name: "TV", text: "Air Line (67 + 67)/67 to AI military base." }], background: ('img/Medium-start.png') },
+    { sceneID: "Home2", playerY: 0, LookAt: "left", triggerPoint: 600, hasdialague: true, dialague: [{ name: "TV", text: "Air Line (67 + 67)/67 to AI military base." }], background: ('img/Medium-start.png') },
 
-    { hasdialague: false, background: ('scene/5.png') },
+    { hasdialague: false,playerY: 515, background: ('scene/5.png') },
 
-    { hasdialague: false, background: ('scene/6.png') },
+    { hasdialague: false,playerY: 400, background: ('scene/6.png') },
 
     { hasdialague: false, background: ('scene/7.png') },
 
     { hasdialague: false, background: ('scene/9.png') },
 
-    { sceneID: "airplane", triggerPoint: 700, hasdialague: true, dialague: [{ name: "soldier", text: "Follow me to base, theirs incoming fire." }], background: ('scene/8.png') },
+    { sceneID: "airplane", playerY: 0, triggerPoint: 700, hasdialague: true, dialague: [{ name: "soldier", text: "Follow me to base, theirs incoming fire." }], background: ('scene/8.png') },
 
     {
-        sceneID: "warehouse1", LookAt: "left", triggerPoint: 800, hasdialague: true, dialague: [{ name: "soldier", text: "We need the secret weapon." }, { name: "Hero", text: "No it’s too dangerous." },
+        sceneID: "warehouse1", playerY: 0, LookAt: "left", triggerPoint: 800, hasdialague: true, dialague: [{ name: "soldier", text: "We need the secret weapon." }, { name: "Hero", text: "No it’s too dangerous." },
         { name: "soldier", text: "The ENERGY SWORD" }, { name: "Hero", text: "Sure." },
         { name: "soldier", text: "It was separated to two warehouses." }, { name: "Hero", text: "Will I get more extra credit?" }], background: ('scene/14.png')
     },
@@ -165,14 +166,42 @@ let currentLevel = [
 
     { combatmode: true, hasdialague: false, background: ('scene/18.png') },
 
-    { sceneID: "warehouse1", combatmode: false, hasdialague: true, dialague: [{ name: "soldier", text: "Now go you need to do some coding" }, { name: "Hero", text: "Okay!" }], background: ('scene/20.png') },
+    { sceneID: "warehouse1",playerY: 0, combatmode: false, hasdialague: true, dialague: [{ name: "soldier", text: "Now go you need to do some coding" }, { name: "Hero", text: "Okay!" }], background: ('scene/20.png') },
 
     { combatmode: true, hasdialague: false, background: ('scene/21.png') },
 
     { combatmode: true, hasdialague: false, background: ('scene/21.png') },
 
-    { sceneID: "airplane", triggerPoint: 900, hasdialague: true, dialague: [{ name: "soldier", text: "Goodbye, Thank you." }], background: ('scene/8.png') }
+    { sceneID: "airplane", playerY: 0, triggerPoint: 900, hasdialague: true, dialague: [{ name: "soldier", text: "Goodbye, Thank you." }], background: ('scene/8.png') }
 ]
+function changeBackground() {
+    document.getElementById("Background").addEventListener('click', function () {
+        levelIndex++;
+        posX = 0;
+        player.style.left = posX + "px";
+        document.body.style.backgroundImage = "url('" + currentLevel[levelIndex].background + "')";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundAttachment = "fixed";
+        document.body.style.backgroundSize = "cover";
+        document.body.className = currentLevel[levelIndex].sceneID;
+        Arrow.style.display = "none";
+        hasTalked = false;    
+        setSceneY();
+        if (currentLevel[levelIndex].combatmode) {
+            Emoving();
+        }
+    });
+}
+
+function setSceneY(){
+    // let scene = currentLevel.find(level => level.sceneID === sceneID);
+    console.log('SceneY Called');
+    if(currentLevel[levelIndex].playerY) {
+        console.log(currentLevel[levelIndex].playerY);
+        player.style.top = currentLevel[levelIndex].playerY + 'px';
+    }
+}
 //------Combatmode Function ------// 
 
 
@@ -313,25 +342,8 @@ const Efacing = () => {
     requestAnimationFrame(Efacing);
 }
 
-function changeBackground() {
-    document.getElementById("Background").addEventListener('click', function () {
-        levelIndex++;
-        posX = 0;
-        player.style.left = posX + "px";
-        document.body.style.backgroundImage = "url('" + currentLevel[levelIndex].background + "')";
-        document.body.style.backgroundPosition = "center";
-        document.body.style.backgroundRepeat = "no-repeat";
-        document.body.style.backgroundAttachment = "fixed";
-        document.body.style.backgroundSize = "cover";
-        document.body.className = currentLevel[levelIndex].sceneID;
-        Arrow.style.display = "none";
-        hasTalked = false;
-        if (currentLevel[levelIndex].combatmode) {
-            Emoving();
-        }
 
-    });
-}
+
 const inventory = document.getElementById('inventory-overlay');
 
 document.addEventListener('keydown', (event) => {
@@ -345,7 +357,6 @@ Efacing();
 changeBackground();
 GateKeeper();
 moving();
-
 window.addEventListener('keydown', e);
 window.addEventListener('keyup', Stopmoving);
 window.addEventListener('keydown', PshieldKeydown);
