@@ -12,8 +12,9 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh; /* Use 100vh instead of 80vh to fill the screen */
+    height: 100vh; 
     overflow: hidden;
+    background-image: url(Img/welcome-page-background.jpg);
 }
 
 /*Welcoming page*/
@@ -52,6 +53,16 @@ p {
 .Hard {
     color: #FF0000;
 }
+.keysbox {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    background-color: #404040;
+    padding: 20px;
+    margin-right: 2vh;
+    border-radius: 20px;
+}
 main > section > figure > a > img {
     margin-top: 2.5rem;
     
@@ -84,15 +95,15 @@ main > section > figure > a > img:hover {
     bottom: 0.2vh;
 }
 #enemy img{
-width: 150px;
+width: 200px;
 }
 #player img {
-    width: 150px;
+width: 150px;
 }
 #bubbles {
     display: none;
     position: absolute;
-    top: -80px;  
+    top: -80px;
     height: auto;
     z-index: 10;
 }
@@ -119,8 +130,8 @@ width: 150px;
 #npc-bubbles {
     display: none;
     position: absolute;
-    top: 55vh;
-    left: 100px;
+    top: 24vh;
+    left: 120px;
 }
 #npc-bubbles > p {
     position: absolute;
@@ -187,11 +198,49 @@ width: 150px;
     top: 24px;
     bottom: 50px;
 }
+.classroom #bubbles {
+    top: -120px;
+    height: 14vh;
+    width: 30vh;
+    padding: 5px;
+}
+/*Scene 3*/
+.Airplane1 #npc-bubbles  {
+    left: 86vh;
+    top: 35vh;
+}
+.Airplane1 #npctext {
+    left: 25px;
+}
 /*Scene 4*/
 .Home2 #npc-bubbles {
     top: 33vh;
 }
+/*Airplane secne*/
+#airplane-scene {
+    display: none; 
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    z-index: 5;
+}
 
+#airplane {
+    position: absolute;
+    left: -500px; 
+    width: 400px;
+}
+
+.fly-across {
+    animation: planeMove 5s linear forwards;
+}
+
+@keyframes planeMove {
+    from { left: -500px; }
+    to { left: 100%; }
+}
 /*scene landing*/
 .airplane #soldier {
     display: block;
@@ -200,14 +249,15 @@ width: 150px;
     right: 50vh;
 }
 .airplane #npc-bubbles {
-    left: 118vh;
-    top: 49vh;
+    left: 128vh;
+    top: 52vh;
 }
 .airplane #npctext {
     font-size: 24px;
     left: 25px;
     right: 25px;
 }
+
 .warehouse1 #soldier {
     display: block;
     position: absolute;
@@ -460,6 +510,12 @@ a {
 
 
 /*Combar System*/
+#enemy-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
 #big-container {
     display: flex;
     flex-direction: column;
@@ -467,7 +523,7 @@ a {
 #enemy {
     display: none;
     position: absolute;
-    top: 77vh;
+    top: 74vh;
     user-select: none;
     -webkit-user-drag: none;
     pointer-events: none;
@@ -505,26 +561,26 @@ a {
     background-color: red;
 }
 #EShield {
-    width: 170px;         
-    height: 170px;
+    width: 225px;         
+    height: 225px;
     background-color: rgba(0, 150, 255, 0.4); 
     border: 3px solid #00fbff;               
     border-radius: 50%;                     
     position: absolute;
-    top: 20px;           
-    left: -10px;
+    top: 10px;           
+    left: 1px;
     display: none;         
     box-shadow: 0 0 20px #00fbff; 
 }
 #PShield {
-    width: 170px;         
-    height: 170px;
+    width: 225px;         
+    height: 225px;
     background-color: rgba(0, 150, 255, 0.4); 
     border: 3px solid #00fbff;               
     border-radius: 50%;                     
     position: absolute;
-    top: 20px;           
-    left: -10px;
+    top: 10px;           
+    left: 15px;
     display: none;         
     box-shadow: 0 0 20px #00fbff;   
 }
@@ -550,22 +606,24 @@ a {
 /* Chooses system*/
 
 #Main-Container {
-    display: none; /* Hidden by default */
+    display: none; 
     flex-direction: row;
     justify-content: center;
     gap: 20px;
     position: absolute;
-    bottom: 20%;
+    bottom: 40%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10000;
 }
 
 #Q {
+    position: absolute;
+    top: 50vh;
+    left: 89vh;
     font-family: 'Press Start 2P', cursive;
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
-    margin-bottom: 20px;
     text-shadow: 2px 2px black;
 }
 

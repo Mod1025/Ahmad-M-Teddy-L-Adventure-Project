@@ -5,6 +5,9 @@ const npcbubbles = document.getElementById("npc-bubbles");
 const npctext = document.getElementById("npctext");
 const Arrow = document.getElementById("Background");
 
+// Airplane scene // 
+const planeContainer = document.getElementById("airplane-scene");
+const planeImg = document.getElementById("airplane");
 
 // ID's FOR Combat System // 
 const enemy = document.getElementById("enemy");
@@ -86,6 +89,17 @@ const cleanup = () => {
     D = false;
     hasTalked = true;
 
+    if (currentLevel[levelIndex].hasdialague) {
+        if (currentLevel[levelIndex].sceneID.includes("Animation")) {
+            if (this.flightFinished) {
+                Arrow.style.display = "block";
+            }
+        } else {
+
+            Arrow.style.display = "block";
+        }
+    }
+
     if (currentLevel[levelIndex].isChoosing) {
         displaychoice();
     }
@@ -101,9 +115,20 @@ const moving = () => {
     if (A === true && posX > 0 && isTalking === false && isChoosing === false) {
         player.style.left = (posX = posX - speed) + "px";
         player.style.transform = "scaleX(-1)";
-    } else if (D === true && posX < window.innerWidth - 245 && isTalking === false && isChoosing === false) {
-        player.style.left = (posX = posX + speed) + "px";
-        player.style.transform = "scaleX(1)";
+    } else if (D === true && isTalking === false && isChoosing === false) {
+        let canMoveForward = true; 
+        if (currentLevel[levelIndex].combatmode === true && posX >= (window.innerWidth / 2) - 250 ) {
+            canMoveForward = false;
+        }
+        
+        if (posX >= window.innerWidth - 245) {
+            canMoveForward = false;
+        }
+
+        if (canMoveForward) {
+            player.style.left = (posX = posX + speed) + "px";
+            player.style.transform = "scaleX(1)";
+        }
     }
 
     requestAnimationFrame(moving);
@@ -120,7 +145,6 @@ const textswap = () => {
     }
 }
 const GateKeeper = () => {
-    requestAnimationFrame(GateKeeper);
 
     if (levelIndex >= currentLevel.length) {
         return;
@@ -134,65 +158,70 @@ const GateKeeper = () => {
             hasTalked = true;
             count = 0;
             textswap();
+
+            if (currentLevel[levelIndex].LookAt === "left") {
+                player.style.transform = "scaleX(-1)";
+                text.style.transform = "scaleX(-1)"
+            } else if (!currentLevel[levelIndex].LookAt === "left") {
+                player.style.transform = "scaleX(1)";
+            }
         }
     } else if (currentLevel[levelIndex].hasdialague === false) {
         if (posX > window.innerWidth - 275) {
             Arrow.style.display = "block";
         }
     }
-    if (currentLevel[levelIndex].isChoosing === true && isChoosing === false) {
-        if (posX > 400) {
+    if (currentLevel[levelIndex].isChoosing === true && currentLevel[levelIndex].hasChoice === false) {
+        if (posX > 400 && isChoosing === false) {
             displaychoice();
         }
     }
-
+    requestAnimationFrame(GateKeeper);
 }
 
 let currentLevel = [
     { sceneID: "Home", playerY: 0, LookAt: "left", triggerPoint: 1400, hasdialague: true, dialague: [{ name: "TV", text: "AI robots are taking over the world." }, { name: "Hero", text: "Its 7:55 I should head to collage." }], background: ('img/Medium-start.png') },
 
-    { sceneID: "way-college", playerY: 600, hasdialague: false, background: ('scene/1.png') },
+    { sceneID: "way-college", playerY: 650, hasdialague: false, background: ('scene/1.png') },
 
     {
-        sceneID: "classroom", playerY: 700, LookAt: "left", triggerPoint: 850, hasdialague: true, dialague: [{ name: "Teacher", text: "AI is taking over the world I cant help since im too old." }, { name: "Teacher", text: "I send you on a quest for extra credit! MC!!!" },
+        sceneID: "classroom", playerY: 700, LookAt: "left", triggerPoint: 950, hasdialague: true, dialague: [{ name: "Teacher", text: "AI is taking over the world I cant help since im too old." }, { name: "Teacher", text: "I send you on a quest for extra credit! MC!!!" },
         { name: "Hero", text: "Extra credit, ill do anything for extra credit!" }, { name: "Teacher", text: "Go home wise student and gather your items to conquer AI!" }], background: ('scene/2.png')
     },
 
-    { hasdialague: false, playerY: 550, background: ('scene/3.png') },
+    { hasdialague: false, playerY: 580, background: ('scene/3.png') },
 
-    { sceneID: "Home2", playerY: 0, LookAt: "left", triggerPoint: 600, hasdialague: true, dialague: [{ name: "TV", text: "Air Line (67 + 67)/67 to AI military base." }], background: ('img/Medium-start.png') },
-    { sceneID: "Home2", LookAt: "left", triggerPoint: 600, hasdialague: true, dialague: [{ name: "TV", text: "Air Line (67 + 67)/67 to AI military base." }, { name: "Hero", text: "I need to Remember This" }], background: ('img/Medium-start.png') },
+    { sceneID: "Home2", playerY: 0, LookAt: "left", triggerPoint: 600, hasdialague: true, dialague: [{ name: "TV", text: "Air Line (67 + 67)/67 to AI military base." }, { name: "Hero", text: "I need to Remember This" }], background: ('img/Medium-start.png') },
 
     { hasdialague: false, playerY: 515, background: ('scene/5.png') },
 
-    { hasdialague: false, playerY: 400, background: ('scene/6.png') },
-    { hasdialague: false, isChoosing: true, hasChoice: true, choiceData: { question: "Which gate you choose?", options: ["1", "2", "3"], outcomes: { "1": { Deadly: true }, "2": { Deadly: true }, "3": { text: "Have great fly." } } }, background: ('scene/6.png') },
+    { sceneID: "Airplane1", hasdialague: false, playerY: 400, isChoosing: true, hasChoice: false, choiceData: { question: "Which gate you choose?", options: ["1", "2", "3"], outcomes: { "1": { Deadly: true }, "2": { Deadly: true }, "3": { text: "Have great fly." } } }, background: ('scene/6.png') },
 
-    { hasdialague: false, background: ('scene/7.png') },
+    { sceneID: "AirplaneAnimation", hasdialague: false, background: ('scene/7.png') },
 
-    { hasdialague: false, background: ('scene/9.png') },
+    { sceneID: "AirplaneAnimation2", hasdialague: false, background: ('scene/9.png') },
 
-    { sceneID: "airplane", playerY: 0, triggerPoint: 700, hasdialague: true, dialague: [{ name: "soldier", text: "Follow me to base, theirs incoming fire." }], background: ('scene/8.png') },
+    { sceneID: "airplane", playerY: 600, playerX: 800, triggerPoint: 1100, hasdialague: true, dialague: [{ name: "soldier", text: "Follow me to base, theirs incoming fire." }], background: ('scene/8.png') },
 
     {
-        sceneID: "warehouse1", playerY: 0, LookAt: "left", triggerPoint: 800, hasdialague: true, dialague: [{ name: "soldier", text: "We need the secret weapon." }, { name: "Hero", text: "No it’s too dangerous." },
+        sceneID: "warehouse1", playerX: 500, LookAt: "left", triggerPoint: 1100, hasdialague: true, dialague: [{ name: "soldier", text: "We need the secret weapon." }, { name: "Hero", text: "No it’s too dangerous." },
         { name: "soldier", text: "The ENERGY SWORD" }, { name: "Hero", text: "Sure." },
         { name: "soldier", text: "It was separated to two warehouses." }, { name: "Hero", text: "Will I get more extra credit?" }], background: ('scene/14.png')
     },
 
-    { combatmode: true, hasdialague: false, background: ('scene/16.png') },
+    { sceneID: "company1", playerY: 775, combatmode: true, hasdialague: false, background: ('scene/16.png') },
 
-    { sceneID: "warehouse1", LookAt: "left", triggerPoint: 800, combatmode: false, hasdialague: true, dialague: [{ name: "soldier", text: "Go to the second company, and retrive the piece!" }, { name: "Hero", text: "okay." }], background: ('scene/17.png') },
+    { sceneID: "warehouse1", LookAt: "left", triggerPoint: 1100, combatmode: false, hasdialague: true, dialague: [{ name: "soldier", text: "Go to the second company, and retrive the piece!" }, { name: "Hero", text: "okay." }], background: ('scene/17.png') },
 
-    { combatmode: true, hasdialague: false, background: ('scene/18.png') },
+    { sceneID: "company2", combatmode: true, hasdialague: false, background: ('scene/18.png') },
 
-    { sceneID: "warehouse1", playerY: 0, combatmode: false, hasdialague: true, dialague: [{ name: "soldier", text: "Now go you need to do some coding" }, { name: "Hero", text: "Okay!" }], background: ('scene/20.png') },
+    { sceneID: "warehouse1", playerY: 0,  LookAt: "left", combatmode: false, triggerPoint: 1100, hasdialague: true, dialague: [{ name: "soldier", text: "Be ready you are going to fight the Boss" }, { name: "Hero", text: "Okay!" }], background: ('scene/20.png') },
 
-    { combatmode: true, hasdialague: false, background: ('scene/21.png') },
+    { sceneID: "company2",combatmode: true, hasdialague: false, background: ('scene/21.png') },
 
-    { combatmode: true, hasdialague: false, background: ('scene/21.png') },
+    { sceneID: "boss", combatmode: true, hasdialague: false, background: ('scene/22.png') },
 
-    { sceneID: "airplane", playerY: 0, triggerPoint: 900, hasdialague: true, dialague: [{ name: "soldier", text: "Goodbye, Thank you." }], background: ('scene/8.png') }
+    { sceneID: "airplane", playerY: 0, triggerPoint: 900, hasdialague: true, dialague: [{ name: "soldier", text: "Goodbye, Thank you." }], background: ('scene/8.png')}
 ]
 
 
@@ -207,9 +236,12 @@ const choiceclick = (outcomes) => {
         location.reload();
     } else {
         isChoosing = false
+        currentLevel[levelIndex].hasChoice = true;
+
         npcbubbles.style.display = "block";
         npctext.innerText = outcomes.text;
         Arrow.style.display = "block";
+        Question.style.display = "none";
     }
 }
 const displaychoice = () => {
@@ -346,7 +378,7 @@ const Efacing = () => {
                 isBulletActive = false;
                 bullet.style.display = "none";
                 if (isPlayerShieldActive === false) {
-                    playerHP = playerHP - 20;
+                    playerHP = playerHP - 50;
                     PHealth.style.width = playerHP + "%";
                 }
             }
@@ -365,6 +397,12 @@ const Efacing = () => {
                 }
             }
         }
+        const botImg = enemy.querySelector('img');
+        if (currentLevel[levelIndex].sceneID === "boss") {
+            botImg.src = "Img/AI-Boss.svg";
+        } else {
+            botImg.src = "Img/midRobots.svg";
+        }
         if (enemyHP <= 0) {
             enemyHP = 100;
             EHealth.style.width = "100" + "%";
@@ -377,9 +415,31 @@ const Efacing = () => {
             playerHP = 100;
         }
         if (playerHP <= 0) {
-            alert("Replay");
+            alert("You got gleaned :)");
+
+            
+            levelIndex = 0;
+            botsDefeated = 0;
+            playerHP = 100;
+            enemyHP = 100;
+
+            
+            PHealth.style.width = "100%";
+            EHealth.style.width = "100%";
+            PHealthcon.style.display = "none";
+            EHealthcon.style.display = "none";
+            enemy.style.display = "none";
+
+    
+            posX = 0;
+            player.style.left = posX + "px";
+
+           
             location.reload();
+            return; 
         }
+
+        
 
     }
     requestAnimationFrame(Efacing);
@@ -389,6 +449,7 @@ function changeBackground() {
     document.getElementById("Background").addEventListener('click', function () {
         levelIndex++;
         posX = 0;
+        isTalking = false;
         player.style.left = posX + "px";
         document.body.style.backgroundImage = "url('" + currentLevel[levelIndex].background + "')";
         document.body.style.backgroundPosition = "center";
@@ -398,17 +459,52 @@ function changeBackground() {
         document.body.className = currentLevel[levelIndex].sceneID;
         Arrow.style.display = "none";
         hasTalked = false;
+        npcbubbles.style.display = "none";
+        player.style.transform = "scaleX(1)";
         setSceneY();
         if (currentLevel[levelIndex].combatmode) {
             Emoving();
         }
+
+        if (currentLevel[levelIndex].sceneID === "AirplaneAnimation" || currentLevel[levelIndex].sceneID === "AirplaneAnimation2") {
+            player.style.display = "none";
+            planeContainer.style.display = "block";
+
+            planeImg.classList.remove("fly-across");
+            void planeImg.offsetWidth;
+            planeImg.classList.add("fly-across");
+
+            // NEW LOGIC: Use a flag to track when the flight is done
+            this.flightFinished = false;
+            setTimeout(() => {
+                this.flightFinished = true;
+                // Only show arrow if they aren't talking
+                if (isTalking === false) {
+                    Arrow.style.display = "block";
+                }
+            }, 5000);
+
+        } else {
+            planeContainer.style.display = "none";
+            player.style.display = "block";
+        }
+
     });
 }
 function setSceneY() {
-    console.log('SceneY Called');
     if (currentLevel[levelIndex].playerY) {
         console.log(currentLevel[levelIndex].playerY);
         player.style.top = currentLevel[levelIndex].playerY + 'px';
+    }
+    if (currentLevel[levelIndex].playerX) {
+        posX = currentLevel[levelIndex].playerX
+        player.style.left = posX + "px";
+    } else {
+        posX = 0;
+        player.style.left = posX + "px";
+    }
+    if (currentLevel[levelIndex].playerB) {
+        player.style.bottom = currentLevel[levelIndex].playerB + "px";
     }
 }
 const inventory = document.getElementById('inventory-overlay');
